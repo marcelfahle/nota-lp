@@ -11,8 +11,33 @@ export function Nav() {
       className="fixed top-0 z-50 w-full border-b border-border/60 bg-background/80 backdrop-blur-sm"
     >
       <nav className="mx-auto flex h-14 max-w-5xl items-center justify-between px-6">
-        <a href="/" className="font-display text-xl tracking-tight">
-          Nota
+        <a href="/" className="flex items-center gap-2">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 20 20"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+          >
+            <rect
+              x="2"
+              y="2"
+              width="16"
+              height="16"
+              rx="3"
+              stroke="currentColor"
+              strokeWidth="1.5"
+            />
+            <path
+              d="M7 10.5L9.5 13L13.5 7.5"
+              stroke="#4ADE80"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+          <span className="font-display text-xl tracking-tight">Nota</span>
         </a>
         <div className="flex items-center gap-8">
           <div className="hidden items-center gap-6 text-[13px] text-muted md:flex">
