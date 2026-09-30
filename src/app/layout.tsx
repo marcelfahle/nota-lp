@@ -1,64 +1,54 @@
 import type { Metadata } from "next";
-import { Geist_Mono } from "next/font/google";
-import localFont from "next/font/local";
+import { Archivo, Doto, Geist_Mono, Newsreader } from "next/font/google";
 import "./globals.css";
 
-const instrumentSerif = localFont({
-  src: [
-    {
-      path: "../fonts/InstrumentSerif-Regular.ttf",
-      weight: "400",
-      style: "normal",
-    },
-    {
-      path: "../fonts/InstrumentSerif-Italic.ttf",
-      weight: "400",
-      style: "italic",
-    },
-  ],
-  variable: "--font-instrument-serif",
+const archivo = Archivo({
+  variable: "--font-archivo",
+  subsets: ["latin"],
+  axes: ["wdth"],
   display: "swap",
 });
 
-const instrumentSans = localFont({
-  src: [
-    {
-      path: "../fonts/InstrumentSans-Variable.ttf",
-      weight: "400 700",
-      style: "normal",
-    },
-    {
-      path: "../fonts/InstrumentSans-VariableItalic.ttf",
-      weight: "400 700",
-      style: "italic",
-    },
-  ],
-  variable: "--font-instrument-sans",
+const newsreader = Newsreader({
+  variable: "--font-newsreader",
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  axes: ["opsz"],
   display: "swap",
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: "swap",
 });
 
+const doto = Doto({
+  variable: "--font-doto",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const title = "Nota — AI invoicing that works in ChatGPT and Claude";
+const description =
+  "Send invoices from ChatGPT, Claude or Nota's own chat. One sentence in, a real invoice out: PDF, Stripe pay link, XRechnung. $9/mo, open source.";
+
 export const metadata: Metadata = {
-  title: "Nota — Invoices without the nonsense",
-  description:
-    "Create and send a beautiful invoice in 30 seconds. AI-native, open source, $9/month.",
+  metadataBase: new URL("https://www.withnota.com"),
+  title,
+  description,
+  alternates: { canonical: "/" },
   openGraph: {
-    title: "Nota — Invoices without the nonsense",
-    description:
-      "Create and send a beautiful invoice in 30 seconds. AI-native. Open source. $9/month.",
-    url: "https://withnota.com",
+    title,
+    description,
+    url: "https://www.withnota.com",
     siteName: "Nota",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Nota — Invoices without the nonsense",
-    description:
-      "Create and send a beautiful invoice in 30 seconds. AI-native. Open source. $9/month.",
+    title,
+    description,
   },
 };
 
@@ -68,12 +58,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${instrumentSans.variable} ${instrumentSerif.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
-      </body>
+    <html
+      lang="en"
+      className={`${archivo.variable} ${newsreader.variable} ${geistMono.variable} ${doto.variable}`}
+    >
+      <body className="antialiased">{children}</body>
     </html>
   );
 }

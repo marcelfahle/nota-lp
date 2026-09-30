@@ -1,72 +1,49 @@
-"use client";
+import Link from "next/link";
+import { Logo } from "@/components/logo";
+import { APP_URL, GITHUB_URL } from "@/lib/palette";
 
-import { motion } from "motion/react";
+const links = [
+  { href: "/#doors", label: "How it works" },
+  { href: "/#not", label: "What it won't do" },
+  { href: "/#pricing", label: "Pricing" },
+  { href: "/freshbooks", label: "vs FreshBooks" },
+];
 
 export function Nav() {
   return (
-    <motion.header
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.4, delay: 0.1 }}
-      className="fixed top-0 z-50 w-full border-b border-border/60 bg-background/80 backdrop-blur-sm"
-    >
-      <nav className="mx-auto flex h-14 max-w-5xl items-center justify-between px-6">
-        <a href="/" className="flex items-center gap-2">
-          <svg
-            width="20"
-            height="20"
-            viewBox="0 0 20 20"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            aria-hidden="true"
-          >
-            <rect
-              x="2"
-              y="2"
-              width="16"
-              height="16"
-              rx="3"
-              stroke="currentColor"
-              strokeWidth="1.5"
-            />
-            <path
-              d="M7 10.5L9.5 13L13.5 7.5"
-              stroke="#4ADE80"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-          <span className="font-display text-xl tracking-tight">Nota</span>
-        </a>
-        <div className="flex items-center gap-8">
-          <div className="hidden items-center gap-6 text-[13px] text-muted md:flex">
-            <a href="#how" className="transition-colors hover:text-foreground">
-              How it works
-            </a>
-            <a
-              href="#pricing"
-              className="transition-colors hover:text-foreground"
-            >
-              Pricing
-            </a>
-            <a
-              href="https://github.com/nota-app/nota"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="transition-colors hover:text-foreground"
-            >
-              GitHub
-            </a>
-          </div>
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-ink/10 bg-paper/85 backdrop-blur-md backdrop-saturate-150">
+      <nav className="mx-auto flex h-14 max-w-[88rem] items-center justify-between px-4 md:px-8">
+        <Link href="/" aria-label="Nota home">
+          <Logo />
+        </Link>
+        <div className="flex items-center gap-6">
+          <ul className="hidden items-center gap-6 text-[13px] font-medium text-ink-2 lg:flex">
+            {links.map((l) => (
+              <li key={l.href}>
+                <a href={l.href} className="transition-colors duration-150 hover:text-ink">
+                  {l.label}
+                </a>
+              </li>
+            ))}
+            <li>
+              <a
+                href={GITHUB_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-mono text-[12px] transition-colors duration-150 hover:text-ink"
+              >
+                GitHub ↗
+              </a>
+            </li>
+          </ul>
           <a
-            href="https://app.withnota.com"
-            className="rounded-md bg-foreground px-4 py-1.5 text-[13px] font-medium text-background transition-opacity hover:opacity-80"
+            href={APP_URL}
+            className="bg-ink px-4 py-2 text-[13px] font-semibold text-paper transition-colors duration-150 hover:bg-red"
           >
-            Get started
+            Start free
           </a>
         </div>
       </nav>
-    </motion.header>
+    </header>
   );
 }

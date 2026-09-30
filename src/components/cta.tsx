@@ -1,37 +1,45 @@
 "use client";
 
-import { motion, useInView } from "motion/react";
-import { useRef } from "react";
+import dynamic from "next/dynamic";
+import { CopyCommand } from "@/components/copy-command";
+import { APP_URL, palette } from "@/lib/palette";
+
+const DitherField = dynamic(
+  () => import("@/components/dither/dither-field").then((m) => m.DitherField),
+  { ssr: false },
+);
 
 export function CTA() {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
-
   return (
-    <section className="border-t border-border px-6 py-24 md:py-36">
-      <div ref={ref} className="mx-auto max-w-3xl">
-        <motion.div
-          initial={{ opacity: 0, y: 8 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5 }}
-        >
-          <h2 className="font-display text-3xl tracking-tight md:text-5xl">
-            Your next invoice takes
-            <br />
-            <em className="text-accent">30 seconds.</em>
-          </h2>
-          <p className="mt-4 max-w-md text-muted">
-            Free to start. No credit card. Cancel anytime.
-          </p>
-          <div className="mt-8">
-            <a
-              href="https://app.withnota.com"
-              className="inline-block bg-foreground px-6 py-3 text-sm font-medium text-background transition-opacity hover:opacity-80"
-            >
-              Create your first invoice →
-            </a>
-          </div>
-        </motion.div>
+    <section className="relative isolate overflow-hidden bg-ink px-4 py-28 text-term-fg md:px-8 md:py-40">
+      <DitherField
+        a={palette.ink}
+        b="#2a251f"
+        mode="field"
+        bias={0.32}
+        pixel={5}
+        speed={0.6}
+        className="absolute inset-0 -z-10 h-full w-full"
+      />
+      <div className="mx-auto max-w-[88rem]">
+        <h2 className="cond text-[clamp(3.6rem,12vw,12.5rem)] leading-[0.82] font-black tracking-[-0.02em]">
+          Your next invoice
+          <br />
+          is <span className="bg-hi px-[0.08em] text-ink">one sentence</span> long.
+        </h2>
+        <div className="mt-12 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
+          <a
+            href={APP_URL}
+            className="group inline-flex items-center gap-3 bg-hi px-7 py-4 text-[16px] font-semibold text-ink transition-colors duration-150 hover:bg-paper"
+          >
+            Send your first invoice
+            <span className="transition-transform duration-200 ease-out group-hover:translate-x-1">→</span>
+          </a>
+          <CopyCommand command="npx -y @nota-app/mcp" tone="ink" className="bg-ink" />
+        </div>
+        <p className="mt-6 font-mono text-[12px] text-term-dim">
+          Free for 5 invoices a month · No card · Unlimited clients
+        </p>
       </div>
     </section>
   );

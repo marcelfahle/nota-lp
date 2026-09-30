@@ -1,177 +1,130 @@
 "use client";
 
 import { motion } from "motion/react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { HeroDemo, SURFACES } from "@/components/hero-demo";
+import { ScrambleWord } from "@/components/scramble-word";
+import { APP_URL } from "@/lib/palette";
 
-const TYPING_TEXT =
-  "Invoice Oxide for 40 hours consulting at €120/hr, due in 30 days";
+const ease = [0.16, 1, 0.3, 1] as const;
 
-function HeroDemo() {
-  const [displayed, setDisplayed] = useState("");
-  const [done, setDone] = useState(false);
-
-  useEffect(() => {
-    const startDelay = setTimeout(() => {
-      let i = 0;
-      const id = setInterval(() => {
-        i++;
-        setDisplayed(TYPING_TEXT.slice(0, i));
-        if (i >= TYPING_TEXT.length) {
-          clearInterval(id);
-          setTimeout(() => setDone(true), 600);
-        }
-      }, 35);
-      return () => clearInterval(id);
-    }, 1200);
-    return () => clearTimeout(startDelay);
-  }, []);
-
+function Line({ children, delay }: { children: React.ReactNode; delay: number }) {
   return (
-    <div className="mt-14 md:mt-16">
-      {/* Input */}
-      <div className="border border-border bg-[#0f0f0f] p-5">
-        <div className="flex items-center gap-2 mb-3">
-          <span className="inline-block h-2 w-2 rounded-full bg-muted/30" />
-          <span className="inline-block h-2 w-2 rounded-full bg-muted/30" />
-          <span className="inline-block h-2 w-2 rounded-full bg-muted/30" />
-        </div>
-        <div className="font-mono text-sm leading-relaxed">
-          <span className="text-muted">→ </span>
-          <span>{displayed}</span>
-          {!done && (
-            <span className="cursor-blink ml-0.5 inline-block h-4 w-[2px] bg-accent align-middle" />
-          )}
-        </div>
-      </div>
-
-      {/* Invoice result */}
-      {done && (
-        <motion.div
-          initial={{ opacity: 0, y: 8, scaleY: 0.97 }}
-          animate={{ opacity: 1, y: 0, scaleY: 1 }}
-          transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-          className="border border-t-0 border-border bg-[#0f0f0f] origin-top"
-        >
-          {/* Status bar */}
-          <div className="flex items-center gap-2 px-5 py-3 border-b border-border">
-            <motion.span
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ delay: 0.15, type: "spring", stiffness: 400 }}
-              className="inline-block h-1.5 w-1.5 rounded-full bg-accent"
-            />
-            <span className="font-mono text-xs text-muted">
-              Invoice created · ready to send
-            </span>
-          </div>
-
-          {/* Invoice summary */}
-          <div className="px-5 py-5">
-            <div className="flex items-start justify-between">
-              <div>
-                <p className="text-sm font-medium">Oxide Computer Company</p>
-                <p className="mt-0.5 text-xs text-muted">
-                  40 hrs × €120/hr · due in 30 days
-                </p>
-              </div>
-              <div className="text-right">
-                <p className="font-display text-xl tracking-tight">
-                  €4,800.00
-                </p>
-              </div>
-            </div>
-
-            {/* Action buttons */}
-            <div className="mt-5 flex gap-3">
-              <motion.div
-                initial={{ opacity: 0, y: 4 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3, duration: 0.3 }}
-                className="flex-1 bg-foreground py-2 text-center text-xs font-medium text-background"
-              >
-                Send invoice →
-              </motion.div>
-              <motion.div
-                initial={{ opacity: 0, y: 4 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4, duration: 0.3 }}
-                className="border border-border py-2 px-4 text-center text-xs text-muted"
-              >
-                Preview PDF
-              </motion.div>
-            </div>
-          </div>
-        </motion.div>
-      )}
-    </div>
+    <span className="block overflow-hidden pb-[0.06em]">
+      <motion.span
+        className="block"
+        initial={{ y: "105%" }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.9, delay, ease }}
+      >
+        {children}
+      </motion.span>
+    </span>
   );
 }
 
 export function Hero() {
+  const [active, setActive] = useState(0);
+
   return (
-    <section className="px-6 pt-32 pb-24 md:pt-44 md:pb-36">
-      <div className="mx-auto max-w-3xl">
-        <motion.p
+    <section className="relative px-4 pt-24 md:px-8 md:pt-28">
+      <div className="mx-auto max-w-[88rem]">
+        <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
-          className="mb-5 font-mono text-xs tracking-wide text-muted uppercase"
+          className="flex flex-wrap items-center justify-between gap-x-6 gap-y-2 border-b border-ink/15 pb-3"
         >
-          Invoicing for freelancers & small teams
-        </motion.p>
-
-        <motion.h1
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.05 }}
-          className="font-display text-[clamp(2.75rem,6vw,4.5rem)] leading-[1.05] tracking-tight"
-        >
-          Send invoices.
-          <br />
-          Get paid. <em>Move on.</em>
-        </motion.h1>
-
-        <motion.p
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="mt-6 max-w-lg text-lg leading-relaxed text-muted"
-        >
-          Describe your work in one sentence — Nota turns it into a professional
-          invoice with a payment link, ready to send.{" "}
-          <span className="text-accent">$9/month</span>.
-        </motion.p>
-
-        <motion.div
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.15 }}
-          className="mt-10 flex items-center gap-4"
-        >
-          <a
-            href="https://app.withnota.com"
-            className="rounded-md bg-foreground px-5 py-2.5 text-sm font-medium text-background transition-opacity hover:opacity-80"
-          >
-            Create your first invoice
-          </a>
-          <a
-            href="https://github.com/nota-app/nota"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-sm text-muted underline decoration-border underline-offset-4 transition-colors hover:text-foreground hover:decoration-muted"
-          >
-            View source
-          </a>
+          <p className="label text-ink-2">
+            INV-0001 <span className="text-ink/30">/</span> AI invoicing, open source
+          </p>
+          <p className="label hidden text-ink-2 sm:block">
+            Works in ChatGPT <span className="text-ink/30">·</span> Claude{" "}
+            <span className="text-ink/30">·</span> Nota <span className="text-ink/30">·</span>{" "}
+            Terminal
+          </p>
         </motion.div>
 
-        {/* Live demo */}
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-        >
-          <HeroDemo />
-        </motion.div>
+        <h1 className="cond mt-6 text-[clamp(3.4rem,11.2vw,11.5rem)] leading-[0.84] font-black tracking-[-0.02em] md:mt-8">
+          <Line delay={0.05}>
+            Tell{" "}
+            <span className="relative inline-block">
+              <motion.span
+                aria-hidden="true"
+                className="absolute inset-x-[-0.06em] top-[0.14em] bottom-[0.04em] origin-left bg-hi"
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: 1 }}
+                transition={{ duration: 0.55, delay: 0.75, ease }}
+              />
+              <ScrambleWord
+                text={SURFACES[active].word}
+                srText="ChatGPT, Claude or Nota"
+                className="relative"
+              />
+            </span>
+          </Line>
+          <Line delay={0.15}>to send the invoice.</Line>
+        </h1>
+
+        <div className="mt-10 grid gap-12 pb-24 md:mt-14 lg:grid-cols-12 lg:gap-8 lg:pb-32">
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.45, ease }}
+            className="lg:col-span-4 lg:pr-6"
+          >
+            <p className="font-serif text-[1.3rem] leading-[1.45] text-ink md:text-[1.4rem]">
+              Say what you did, in plain words. Nota turns it into a real invoice with a PDF and a
+              pay link, sends it, and nudges your client if they&rsquo;re late.
+            </p>
+            <p className="mt-4 font-serif text-[1.3rem] leading-[1.45] text-ink md:text-[1.4rem]">
+              Do it right inside <strong className="font-semibold">ChatGPT</strong> or{" "}
+              <strong className="font-semibold">Claude</strong>, or in Nota&rsquo;s own chat.
+            </p>
+            <p className="mt-4 font-serif text-[1.3rem] leading-[1.45] text-ink-2 italic md:text-[1.4rem]">
+              $9 a month. Unlimited clients. Open source.
+            </p>
+
+            <div className="mt-8 flex flex-col items-start gap-4">
+              <a
+                href={APP_URL}
+                className="group inline-flex items-center gap-3 bg-ink px-6 py-4 text-[15px] font-semibold text-paper transition-colors duration-150 hover:bg-red"
+              >
+                Send your first invoice
+                <span className="transition-transform duration-200 ease-out group-hover:translate-x-1">
+                  →
+                </span>
+              </a>
+              <a
+                href="#doors"
+                className="text-[15px] font-semibold underline decoration-ink/30 decoration-2 underline-offset-4 transition-colors hover:decoration-red"
+              >
+                Connect ChatGPT or Claude
+              </a>
+            </div>
+
+            <ul className="mt-8 space-y-1.5 font-mono text-[12px] text-ink-2">
+              <li>
+                <span className="text-ink">✓</span> 5 invoices a month free. No card.
+              </li>
+              <li>
+                <span className="text-ink">✓</span> Unlimited clients. Always.
+              </li>
+              <li>
+                <span className="text-red">✕</span> No time tracking. On purpose.
+              </li>
+            </ul>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 0.3, ease }}
+            className="lg:col-span-8 lg:pl-8"
+          >
+            <HeroDemo active={active} onChange={setActive} />
+          </motion.div>
+        </div>
       </div>
     </section>
   );

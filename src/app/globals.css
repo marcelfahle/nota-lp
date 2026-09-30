@@ -1,40 +1,149 @@
 @import "tailwindcss";
 
+/*
+ * Paper & Terminal.
+ * Office-supply palette: paper, ink, highlighter, red pen.
+ * Hex twins of these live in src/lib/palette.ts for the WebGL dither.
+ */
+@theme {
+  --color-paper: oklch(0.965 0.013 88);
+  --color-paper-2: oklch(0.93 0.016 86);
+  --color-ink: oklch(0.2 0.012 75);
+  --color-ink-2: oklch(0.46 0.014 75);
+  --color-term: oklch(0.175 0.008 75);
+  --color-term-2: oklch(0.24 0.01 75);
+  --color-term-fg: oklch(0.92 0.012 88);
+  --color-term-dim: oklch(0.64 0.012 85);
+  --color-hi: oklch(0.93 0.21 122);
+  --color-red: oklch(0.59 0.215 30);
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+}
+
 @theme inline {
-  --color-background: #0A0A0A;
-  --color-foreground: #EDEDED;
-  --color-border: #1F1F1F;
-  --color-muted: #6B6B6B;
-  --color-accent: #4ADE80;
-  --font-sans: var(--font-instrument-sans);
-  --font-display: var(--font-instrument-serif);
-  --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-newsreader), ui-serif, Georgia, serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --font-dot: var(--font-doto), var(--font-geist-mono), monospace;
 }
 
 html {
-  background-color: #0A0A0A;
-  color-scheme: dark;
+  background-color: var(--color-paper);
+  color-scheme: light;
   scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
 }
 
 body {
-  background: var(--color-background);
-  color: var(--color-foreground);
-  font-family: var(--font-sans), system-ui, sans-serif;
+  overflow-x: clip;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-display);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 ::selection {
-  background: var(--color-accent);
-  color: var(--color-background);
+  background: var(--color-hi);
+  color: var(--color-ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-red);
+  outline-offset: 3px;
+}
+
+/* Archivo width axis: condensed headlines, expanded labels. */
+@utility cond {
+  font-variation-settings: "wdth" 66;
+}
+@utility semi-cond {
+  font-variation-settings: "wdth" 82;
+}
+@utility wide {
+  font-variation-settings: "wdth" 125;
+}
+
+/* Small expanded caps used for labels, like the fine print on a form. */
+@utility label {
+  font-family: var(--font-display);
+  font-variation-settings: "wdth" 125;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* Highlighter marker for inline, possibly wrapping text. */
+@utility hl {
+  background-image: linear-gradient(
+    100deg,
+    transparent 0.2em,
+    var(--color-hi) 0.3em,
+    var(--color-hi) calc(100% - 0.3em),
+    transparent calc(100% - 0.15em)
+  );
+  background-repeat: no-repeat;
+  background-size: 100% 0.82em;
+  background-position: 0 72%;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  padding-inline: 0.12em;
+  margin-inline: -0.12em;
+}
+
+/* Halftone shadow: printed dots instead of a blur. */
+@utility halftone-shadow {
+  position: relative;
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    transform: translate(14px, 14px);
+    background-image: radial-gradient(var(--color-ink) 0.9px, transparent 1.3px);
+    background-size: 4px 4px;
+    z-index: -1;
+    pointer-events: none;
+  }
+}
+
+/* Thermal receipt: torn zig-zag edges top and bottom. */
+@utility receipt-edge {
+  --zz: 14px;
+  mask:
+    conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg)
+      bottom / var(--zz) 51% repeat-x,
+    conic-gradient(from 135deg at top, #0000, #000 1deg 89deg, #0000 90deg)
+      top / var(--zz) 51% repeat-x;
 }
 
 @keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
 }
 
 .cursor-blink {
   animation: blink 1s step-end infinite;
+}
+
+@keyframes spin-steps {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .cursor-blink {
+    animation: none;
+  }
 }

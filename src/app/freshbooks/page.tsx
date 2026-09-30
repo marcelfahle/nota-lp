@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     title: "Drop FreshBooks → Switch to Nota",
     description:
       "FreshBooks charges $23/month and limits you to 5 clients. Nota gives you unlimited everything for $9/month.",
-    url: "https://withnota.com/freshbooks",
+    url: "https://www.withnota.com/freshbooks",
     siteName: "Nota",
     type: "website",
   },
