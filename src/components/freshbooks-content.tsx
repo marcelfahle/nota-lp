@@ -211,7 +211,7 @@ export function FreshBooksContent() {
           <p className="mt-20 max-w-3xl border-t border-term-fg/15 pt-6 font-mono text-[11px] leading-relaxed text-term-dim">
             FreshBooks is a trademark of FreshBooks. Nota is not affiliated with, endorsed by, or
             sponsored by FreshBooks. Pricing and feature information is based on publicly
-            available sources as of March 2026 and may change. All comparisons reference
+            available sources as of September 2026 and may change. All comparisons reference
             FreshBooks Lite ($23/mo) unless otherwise noted.
           </p>
         </div>
