@@ -11,7 +11,7 @@ const STACK: [string, string][] = [
   ["CLI + REST API", "incl."],
   ["In-app AI chat", "incl."],
   ["PDF + XRechnung", "incl."],
-  ["Stripe pay links", "0% fee"],
+  ["Stripe pay links", "0% Nota fee"],
   ["Reminders", "incl."],
   ["Reverse charge VAT", "incl."],
   ["Time tracking", "lol, no"],
@@ -72,9 +72,10 @@ function Receipt() {
         </div>
         <p className="my-3 overflow-hidden whitespace-nowrap text-ink/40">{"= ".repeat(40)}</p>
         <div className="flex items-end justify-between">
-          <span className="font-semibold">TOTAL / MONTH</span>
+          <span className="font-semibold">MONTHLY PRICE</span>
           <span className="font-dot text-[4.6rem] leading-[0.75] font-black">$9</span>
         </div>
+        <p className="mt-3 text-[11px] text-ink-2">USD, plus applicable tax.</p>
         <div className="mt-7 flex h-12 items-stretch justify-center gap-[2px]" aria-hidden="true">
           {BARS.map((w, i) => (
             <span key={i} className="bg-ink" style={{ width: w }} />
@@ -116,6 +117,11 @@ export function Pricing() {
                 </div>
               ))}
             </dl>
+
+            <p className="mt-6 max-w-xl text-sm text-ink-2">
+              Prices are in USD, plus applicable tax calculated at checkout. Stripe charges
+              its standard payment processing fees; Nota adds no transaction fee.
+            </p>
 
             <p className="mt-8 max-w-xl font-serif text-[1.2rem] leading-[1.5]">
               We limit <em>volume</em>, never <em>features</em>. If Nota can do it, the free plan
