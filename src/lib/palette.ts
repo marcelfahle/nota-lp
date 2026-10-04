@@ -16,4 +16,7 @@ export function hexToRgb(hex: string): [number, number, number] {
 }
 
 export const APP_URL = "https://app.withnota.com";
+// New visitors start by having their website read; existing ones sign in.
+export const START_URL = `${APP_URL}/start`;
+export const LOGIN_URL = `${APP_URL}/login`;
 export const GITHUB_URL = "https://github.com/marcelfahle/nota";

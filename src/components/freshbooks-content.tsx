@@ -4,7 +4,7 @@ import { motion } from "motion/react";
 import Link from "next/link";
 import { DitherBand } from "@/components/dither/dither-band";
 import { SectionLabel } from "@/components/section-label";
-import { APP_URL } from "@/lib/palette";
+import { START_URL } from "@/lib/palette";
 
 const comparisons: [string, string, string][] = [
   ["Monthly price", "$23", "$9"],
@@ -81,7 +81,7 @@ export function FreshBooksContent() {
             </p>
             <div className="flex flex-col items-start gap-3 lg:col-span-5 lg:col-start-8 lg:items-end lg:justify-end">
               <a
-                href={APP_URL}
+                href={START_URL}
                 className="group inline-flex items-center gap-3 bg-hi px-7 py-4 text-[16px] font-semibold text-ink transition-colors duration-150 hover:bg-paper"
               >
                 Switch to Nota, free to start
@@ -194,7 +194,7 @@ export function FreshBooksContent() {
           </p>
           <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-8">
             <a
-              href={APP_URL}
+              href={START_URL}
               className="group inline-flex items-center gap-3 bg-hi px-7 py-4 text-[16px] font-semibold text-ink transition-colors duration-150 hover:bg-paper"
             >
               Start with Nota, free

@@ -4,7 +4,7 @@ import { motion } from "motion/react";
 import { useState } from "react";
 import { HeroDemo, SURFACES } from "@/components/hero-demo";
 import { ScrambleWord } from "@/components/scramble-word";
-import { APP_URL } from "@/lib/palette";
+import { START_URL } from "@/lib/palette";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
@@ -87,7 +87,7 @@ export function Hero() {
 
             <div className="mt-8 flex flex-col items-start gap-4">
               <a
-                href={APP_URL}
+                href={START_URL}
                 className="group inline-flex items-center gap-3 bg-ink px-6 py-4 text-[15px] font-semibold text-paper transition-colors duration-150 hover:bg-red"
               >
                 Send your first invoice

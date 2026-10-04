@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Logo } from "@/components/logo";
-import { APP_URL, GITHUB_URL } from "@/lib/palette";
+import { GITHUB_URL, LOGIN_URL, START_URL } from "@/lib/palette";
 
 const links = [
   { href: "/#doors", label: "How it works" },
@@ -16,7 +16,7 @@ export function Nav() {
         <Link href="/" aria-label="Nota home">
           <Logo />
         </Link>
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-4 md:gap-6">
           <ul className="hidden items-center gap-6 text-[13px] font-medium text-ink-2 lg:flex">
             {links.map((l) => (
               <li key={l.href}>
@@ -37,7 +37,13 @@ export function Nav() {
             </li>
           </ul>
           <a
-            href={APP_URL}
+            href={LOGIN_URL}
+            className="py-2 text-[13px] font-medium text-ink-2 transition-colors duration-150 hover:text-ink"
+          >
+            Log in
+          </a>
+          <a
+            href={START_URL}
             className="bg-ink px-4 py-2 text-[13px] font-semibold text-paper transition-colors duration-150 hover:bg-red"
           >
             Start free

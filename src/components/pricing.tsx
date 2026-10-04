@@ -2,7 +2,7 @@
 
 import { motion } from "motion/react";
 import { SectionLabel } from "@/components/section-label";
-import { APP_URL } from "@/lib/palette";
+import { START_URL } from "@/lib/palette";
 
 const STACK: [string, string][] = [
   ["Unlimited invoices", "incl."],
@@ -131,7 +131,7 @@ export function Pricing() {
 
             <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-4">
               <a
-                href={APP_URL}
+                href={START_URL}
                 className="group inline-flex items-center gap-3 bg-ink px-6 py-4 text-[15px] font-semibold text-paper transition-colors duration-150 hover:bg-red"
               >
                 Start free

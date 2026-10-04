@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { CopyCommand } from "@/components/copy-command";
-import { APP_URL, palette } from "@/lib/palette";
+import { START_URL, palette } from "@/lib/palette";
 
 const DitherField = dynamic(
   () => import("@/components/dither/dither-field").then((m) => m.DitherField),
@@ -29,7 +29,7 @@ export function CTA() {
         </h2>
         <div className="mt-12 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
           <a
-            href={APP_URL}
+            href={START_URL}
             className="group inline-flex items-center gap-3 bg-hi px-7 py-4 text-[16px] font-semibold text-ink transition-colors duration-150 hover:bg-paper"
           >
             Send your first invoice
