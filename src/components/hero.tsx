@@ -27,7 +27,7 @@ export function Hero() {
   const [active, setActive] = useState(0);
 
   return (
-    <section className="relative px-4 pt-24 md:px-8 md:pt-28">
+    <section className="relative overflow-x-clip px-4 pt-24 md:px-8 md:pt-28">
       <div className="mx-auto max-w-[88rem]">
         <motion.div
           initial={{ opacity: 0 }}
@@ -74,8 +74,9 @@ export function Hero() {
             className="lg:col-span-4 lg:pr-6"
           >
             <p className="font-serif text-[1.3rem] leading-[1.45] text-ink md:text-[1.4rem]">
-              Say what you did, in plain words. Nota turns it into a real invoice with a PDF and a
-              pay link, sends it, and nudges your client if they&rsquo;re late.
+              Nota is open-source AI invoicing software. Describe your work in plain words to
+              create an invoice with a PDF and a Stripe pay link, then ask Nota to send it or
+              remind your client.
             </p>
             <p className="mt-4 font-serif text-[1.3rem] leading-[1.45] text-ink md:text-[1.4rem]">
               Do it right inside <strong className="font-semibold">ChatGPT</strong> or{" "}

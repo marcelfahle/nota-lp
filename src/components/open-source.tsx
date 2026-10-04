@@ -17,7 +17,7 @@ export function OpenSource() {
         <SectionLabel n="06">Open source</SectionLabel>
 
         <div className="mt-10 grid gap-12 lg:grid-cols-12 lg:gap-8">
-          <div className="lg:col-span-6">
+          <div className="min-w-0 lg:col-span-6">
             <h2 className="cond text-[clamp(3rem,7vw,7rem)] leading-[0.86] font-black tracking-[-0.015em]">
               Read every line that touches your money.
             </h2>

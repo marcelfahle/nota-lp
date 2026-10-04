@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { CTA } from "@/components/cta";
 import { DitherBand } from "@/components/dither/dither-band";
 import { Doors } from "@/components/doors";
@@ -11,6 +12,10 @@ import { OpenSource } from "@/components/open-source";
 import { Pricing } from "@/components/pricing";
 import { TheAd } from "@/components/the-ad";
 import { FAQ } from "@/lib/faq";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
 const jsonLd = [
   {

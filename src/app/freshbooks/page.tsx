@@ -3,23 +3,25 @@ import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
 import { FreshBooksContent } from "@/components/freshbooks-content";
 
+const title = "Nota vs FreshBooks Lite: invoicing, pricing and API";
+const description =
+  "Compare Nota and FreshBooks Lite on invoicing, client limits, API access and standard USD monthly pricing. See the costs, trade-offs and official sources.";
+
 export const metadata: Metadata = {
-  title: "Drop FreshBooks → Switch to Nota",
-  description:
-    "FreshBooks charges $23/month and limits you to 5 clients. Nota gives you unlimited everything for $9/month. Open source. No upsells.",
+  title,
+  description,
+  alternates: { canonical: "/freshbooks" },
   openGraph: {
-    title: "Drop FreshBooks → Switch to Nota",
-    description:
-      "FreshBooks charges $23/month and limits you to 5 clients. Nota gives you unlimited everything for $9/month.",
+    title,
+    description,
     url: "https://www.withnota.com/freshbooks",
     siteName: "Nota",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Drop FreshBooks → Switch to Nota",
-    description:
-      "FreshBooks charges $23/month and limits you to 5 clients. Nota gives you unlimited everything for $9/month.",
+    title,
+    description,
   },
 };
 

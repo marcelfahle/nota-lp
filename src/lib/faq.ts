@@ -19,7 +19,7 @@ export const FAQ: { q: string; a: string }[] = [
   },
   {
     q: "Is Nota a good FreshBooks alternative?",
-    a: "If you send invoices and don't need time tracking, payroll or expense management, yes. Nota is $9 a month with unlimited clients. FreshBooks Lite is $23 a month and stops at five.",
+    a: "Nota is an option if you need invoicing without time tracking, payroll or expense management. Nota is $9/month with unlimited clients and invoices. FreshBooks Lite's standard USD monthly price is $23 for up to five billable clients. This compares monthly billing before tax; promotions and annual plans can change the cost. Both products offer an API.",
   },
   {
     q: "Does Nota handle EU e-invoicing and reverse charge?",
@@ -27,6 +27,6 @@ export const FAQ: { q: string; a: string }[] = [
   },
   {
     q: "Is Nota really free and open source?",
-    a: "The code is MIT-licensed, so you can self-host it for nothing. The hosted version is free for 5 invoices a month with every feature, and $9 a month for unlimited.",
+    a: "The code is MIT-licensed with no software license fee; self-hosting has infrastructure and service costs. The hosted version is free for 5 invoices a month with every feature, and $9/month for unlimited invoices, plus applicable tax. Stripe processing fees apply to online payments.",
   },
 ];
