@@ -32,10 +32,10 @@ export function CopyCommand({
     <button
       type="button"
       onClick={copy}
-      className={`group inline-flex items-center gap-3 border px-4 py-3 font-mono text-[13px] transition-colors duration-150 ${toneClass} ${className}`}
+      className={`group inline-flex max-w-full items-center gap-3 border px-4 py-3 font-mono text-[13px] transition-colors duration-150 ${toneClass} ${className}`}
     >
       <span className={tone === "paper" ? "text-ink-2" : "text-hi"}>$</span>
-      <span className="select-all">{command}</span>
+      <span className="min-w-0 [overflow-wrap:anywhere] select-all">{command}</span>
       <span
         className={`label ml-1 transition-opacity duration-150 ${copied ? "text-red opacity-100" : "opacity-50 group-hover:opacity-100"}`}
         aria-live="polite"

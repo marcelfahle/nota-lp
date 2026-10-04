@@ -1,1 +1,1 @@
-Drop FreshBooks: $9/mo instead of $23, unlimited clients instead of 5, MIT instead of closed.
+Nota vs FreshBooks Lite: $9 vs $23 at standard USD monthly prices before tax; promotions and annual plans differ. Unlimited clients vs 5; MIT vs closed source.

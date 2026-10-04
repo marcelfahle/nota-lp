@@ -1,8 +1,8 @@
 const ROWS: [string, string, string][] = [
-  ["Price", "$23/mo", "$9/mo"],
+  ["Standard USD monthly price", "$23/mo", "$9/mo"],
   ["Clients", "5", "∞"],
   ["Source", "closed", "MIT"],
-  ["MCP / CLI", "no", "yes"],
+  ["API access", "yes", "yes"],
 ];
 
 export function FreshBooksStrip() {
@@ -10,15 +10,15 @@ export function FreshBooksStrip() {
     <section className="bg-ink px-4 py-20 text-term-fg md:px-8 md:py-28">
       <div className="mx-auto grid max-w-[88rem] gap-12 lg:grid-cols-12 lg:items-end lg:gap-8">
         <div className="lg:col-span-6">
-          <p className="font-mono text-[13px] text-hi">dropfreshbooks.com</p>
+          <p className="font-mono text-[13px] text-hi">Nota vs FreshBooks Lite</p>
           <h2 className="cond mt-4 text-[clamp(3.4rem,10vw,10rem)] leading-[0.82] font-black tracking-[-0.02em]">
             Drop
             <br />
             FreshBooks.
           </h2>
           <p className="mt-6 max-w-md font-serif text-[1.2rem] leading-[1.5] text-term-fg/80">
-            You&rsquo;re paying $4.60 per client, per month, for the right to send PDFs. Keep the
-            $168 a year.
+            Nota costs $14/month less than FreshBooks Lite at standard USD monthly prices,
+            before tax. Promotions and annual discounts can change the comparison.
           </p>
           <a
             href="/freshbooks"
@@ -31,18 +31,19 @@ export function FreshBooksStrip() {
 
         <div className="lg:col-span-6">
           <table className="w-full text-left">
+            <caption className="sr-only">Nota vs FreshBooks Lite at standard monthly prices, excluding promotions and tax</caption>
             <thead>
               <tr className="label text-term-dim">
-                <th className="pb-3 font-semibold" />
-                <th className="pb-3 font-semibold">FreshBooks</th>
-                <th className="pb-3 font-semibold text-hi">Nota</th>
+                <th scope="col" className="pb-3 font-semibold">Feature</th>
+                <th scope="col" className="pb-3 font-semibold">FreshBooks Lite</th>
+                <th scope="col" className="pb-3 font-semibold text-hi">Nota</th>
               </tr>
             </thead>
             <tbody>
               {ROWS.map(([label, fb, nota]) => (
                 <tr key={label} className="border-t border-term-fg/15">
-                  <td className="py-4 font-mono text-[12px] text-term-dim">{label}</td>
-                  <td className="py-4 font-mono text-[clamp(1.1rem,1.8vw,1.5rem)] text-term-fg/45 line-through decoration-red decoration-2">
+                  <th scope="row" className="py-4 font-mono text-[12px] font-normal text-term-dim">{label}</th>
+                  <td className="py-4 font-mono text-[clamp(1.1rem,1.8vw,1.5rem)] text-term-fg/70">
                     {fb}
                   </td>
                   <td className="py-4 font-dot text-[clamp(1.6rem,3vw,2.6rem)] font-black text-hi">

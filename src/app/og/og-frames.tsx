@@ -103,7 +103,7 @@ export function OgFreshBooks() {
         />
       </div>
 
-      <p className="absolute top-[150px] left-14 font-mono text-[22px] text-hi">dropfreshbooks.com</p>
+      <p className="absolute top-[150px] left-14 font-mono text-[22px] text-hi">Nota vs FreshBooks Lite</p>
       <h1 className="cond absolute top-[196px] left-14 text-[168px] leading-[0.82] font-black tracking-[-0.02em]">
         Drop
         <br />
@@ -124,6 +124,10 @@ export function OgFreshBooks() {
           </div>
         ))}
       </div>
+
+      <p className="absolute right-14 bottom-[112px] w-[330px] font-mono text-[15px] leading-relaxed text-term-dim">
+        Standard USD monthly prices, before tax. Promotions and annual plans differ.
+      </p>
 
       <div className="absolute inset-x-0 bottom-0 flex items-center justify-between px-14 pb-10">
         <span className="inline-flex items-end gap-2">

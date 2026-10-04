@@ -11,10 +11,10 @@ export function Faq() {
           <div className="lg:col-span-5">
             <div className="lg:sticky lg:top-28">
               <h2 className="cond text-[clamp(3rem,7vw,7rem)] leading-[0.86] font-black tracking-[-0.015em]">
-                Questions people Google.
+                Questions about Nota.
               </h2>
               <p className="mt-6 max-w-sm font-serif text-[1.2rem] leading-[1.5] text-ink-2 italic">
-                Or ask ChatGPT. It&rsquo;ll probably send them here.
+                Invoicing, AI connectors, pricing and self-hosting, explained.
               </p>
             </div>
           </div>

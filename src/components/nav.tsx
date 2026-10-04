@@ -12,7 +12,7 @@ const links = [
 export function Nav() {
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-ink/10 bg-paper/85 backdrop-blur-md backdrop-saturate-150">
-      <nav className="mx-auto flex h-14 max-w-[88rem] items-center justify-between px-4 md:px-8">
+      <nav aria-label="Main navigation" className="mx-auto flex h-14 max-w-[88rem] items-center justify-between px-4 md:px-8">
         <Link href="/" aria-label="Nota home">
           <Logo />
         </Link>

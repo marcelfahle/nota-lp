@@ -7,33 +7,33 @@ import { SectionLabel } from "@/components/section-label";
 import { START_URL } from "@/lib/palette";
 
 const comparisons: [string, string, string][] = [
-  ["Monthly price", "$23", "$9"],
-  ["Client limit", "5 clients", "Unlimited"],
+  ["Standard monthly price (USD)", "$23", "$9"],
+  ["Client limit", "5 billable clients", "Unlimited"],
   ["6th client", "Upgrade to $43/mo", "Included"],
-  ["Invoice creation", "12 clicks, 4 minutes", "1 sentence, 30 seconds"],
-  ["Payment links", "Extra fee", "Stripe, built in"],
-  ["API access", "No", "Full REST API"],
-  ["MCP + CLI", "No", "13 tools + a real CLI"],
+  ["Invoice creation", "Invoice editor + API", "AI chat + REST API"],
+  ["Online payments", "Available; processing fees apply", "Stripe; processing fees apply"],
+  ["API access", "Yes, OAuth 2.0 API", "Yes, REST API"],
+  ["Time tracking", "Included", "Not included"],
   ["Open source", "No", "MIT licensed"],
-  ["Self-host", "No", "Free, forever"],
+  ["Self-host", "No", "No license fee; hosting costs apply"],
 ];
 
 const painPoints = [
   {
-    title: "You're paying $23/month to send 3 invoices",
-    body: "FreshBooks Lite costs $23/month and caps you at 5 clients. Need a 6th? That’s $43/month (Plus plan). Nota is $9/month for unlimited everything, or free for up to 5 invoices a month.",
+    title: "Unlimited clients on the paid plan",
+    body: "FreshBooks Lite supports five billable clients; Plus supports up to 50. Nota's $9/month plan includes unlimited clients and invoices. Nota's free plan includes five invoices a month with unlimited clients.",
   },
   {
-    title: "Creating an invoice takes 12 clicks",
-    body: "Open FreshBooks. Navigate to invoices. Click New. Search client. Add line items. Set due date. Preview. Adjust formatting. Preview again. Send. With Nota, you type one sentence and it’s done.",
+    title: "Create invoices in your AI chat",
+    body: "Describe the client and work in ChatGPT, Claude or Nota's own chat. Nota creates a draft for you to review, then sends it when you ask. FreshBooks offers an invoice editor and an API for creating and sending invoices.",
   },
   {
-    title: "Your invoices look like everyone else's",
-    body: "FreshBooks gives you the same template from 2014. Nota sends clean, modern invoices with your branding, the kind that make clients think you have your shit together.",
+    title: "Choose the features you need",
+    body: "FreshBooks includes time tracking and expense management. Nota focuses on invoicing, with PDFs, Stripe pay links and XRechnung exports. If you rely on accounting features beyond invoicing, check your requirements before switching.",
   },
   {
-    title: "You can't see the code",
-    body: "FreshBooks is a black box. You can’t audit it, extend it, or self-host it. Nota is MIT-licensed open source. You own your data and your workflow.",
+    title: "Inspect and self-host the code",
+    body: "Nota is MIT-licensed open source: you can inspect the code, modify it and self-host it. FreshBooks is proprietary software, but its API supports custom integrations. Self-hosting Nota has infrastructure and service costs.",
   },
 ];
 
@@ -45,7 +45,12 @@ export function FreshBooksContent() {
       {/* Hero */}
       <section className="bg-ink px-4 pt-28 pb-20 text-term-fg md:px-8 md:pt-36 md:pb-28">
         <div className="mx-auto max-w-[88rem]">
-          <p className="font-mono text-[14px] text-hi">dropfreshbooks.com</p>
+          <nav aria-label="Breadcrumb" className="font-mono text-[14px] text-hi">
+            <ol className="flex flex-wrap gap-2">
+              <li><Link href="/" className="underline">Nota</Link></li>
+              <li><span aria-hidden="true">/ </span><span aria-current="page">FreshBooks comparison</span></li>
+            </ol>
+          </nav>
           <h1 className="cond mt-5 text-[clamp(3.6rem,13vw,13rem)] leading-[0.82] font-black tracking-[-0.02em]">
             <span className="block overflow-hidden pb-[0.04em]">
               <motion.span
@@ -54,7 +59,7 @@ export function FreshBooksContent() {
                 animate={{ y: 0 }}
                 transition={{ duration: 0.9, ease }}
               >
-                Drop
+                Nota vs
               </motion.span>
             </span>
             <span className="block overflow-hidden pb-[0.04em]">
@@ -71,13 +76,11 @@ export function FreshBooksContent() {
 
           <div className="mt-12 grid gap-10 lg:grid-cols-12 lg:gap-8">
             <p className="font-serif text-[1.4rem] leading-[1.45] text-term-fg/85 lg:col-span-6">
-              FreshBooks charges{" "}
-              <span className="text-term-fg/50 line-through decoration-red decoration-2">
-                $23/mo for 5 clients
-              </span>
-              . Nota gives you unlimited clients, unlimited invoices and a faster workflow for{" "}
-              <span className="bg-hi px-1 text-ink">$9/month</span>. Open source. No upsells. No
-              bullshit.
+              Nota is open-source invoicing software for ChatGPT, Claude and its own chat.
+              Its paid plan includes unlimited clients and invoices for{" "}
+              <span className="bg-hi px-1 text-ink">$9/month</span>. FreshBooks Lite is $23/month
+              for five billable clients at standard USD monthly pricing. Both offer an API;
+              FreshBooks also includes time tracking and expense management.
             </p>
             <div className="flex flex-col items-start gap-3 lg:col-span-5 lg:col-start-8 lg:items-end lg:justify-end">
               <a
@@ -103,14 +106,14 @@ export function FreshBooksContent() {
           <div className="mt-10 grid gap-14 lg:grid-cols-12 lg:gap-8">
             <div className="lg:col-span-5">
               <h2 className="cond text-[clamp(3rem,7vw,7rem)] leading-[0.86] font-black tracking-[-0.015em]">
-                You&rsquo;re overpaying by <span className="text-red">3&times;.</span>
+                <span className="text-red">$14/month less.</span>
               </h2>
               <p className="mt-6 font-serif text-[1.2rem] text-ink-2 italic">
-                Side by side. No spin. Just the numbers.
+                Nota vs FreshBooks Lite at standard USD monthly prices, before tax.
               </p>
 
               <div className="mt-12 border-t-2 border-ink pt-6">
-                <p className="label text-ink-2">Annual savings</p>
+                <p className="label text-ink-2">Difference over 12 monthly payments</p>
                 <p className="mt-3 font-dot text-[clamp(5rem,10vw,8rem)] leading-[0.8] font-black">$168</p>
                 <div className="mt-6 space-y-1 font-mono text-[13px]">
                   <p className="flex justify-between gap-6 text-ink-2">
@@ -126,19 +129,20 @@ export function FreshBooksContent() {
             </div>
 
             <div className="overflow-x-auto lg:col-span-7">
-              <table className="w-full min-w-[32rem] text-left">
+              <table aria-describedby="comparison-pricing-note" className="w-full min-w-[32rem] text-left">
+                <caption className="sr-only">Nota vs FreshBooks Lite: pricing and invoicing features</caption>
                 <thead>
                   <tr className="border-b-2 border-ink">
-                    <th className="label pb-3 font-semibold text-ink-2" />
-                    <th className="label pb-3 font-semibold text-ink-2">FreshBooks</th>
-                    <th className="label pb-3 font-semibold">Nota</th>
+                    <th scope="col" className="label pb-3 font-semibold text-ink-2">Feature</th>
+                    <th scope="col" className="label pb-3 font-semibold text-ink-2">FreshBooks Lite</th>
+                    <th scope="col" className="label pb-3 font-semibold">Nota</th>
                   </tr>
                 </thead>
                 <tbody>
                   {comparisons.map(([label, fb, nota]) => (
                     <tr key={label} className="border-b border-ink/15">
-                      <td className="py-4 pr-6 font-mono text-[12px] text-ink-2">{label}</td>
-                      <td className="py-4 pr-6 font-serif text-[1.1rem] text-ink-2 line-through decoration-red/70 decoration-2">
+                      <th scope="row" className="py-4 pr-6 font-mono text-[12px] font-normal text-ink-2">{label}</th>
+                      <td className="py-4 pr-6 font-serif text-[1.1rem] text-ink-2">
                         {fb}
                       </td>
                       <td className="semi-cond py-4 text-[1.25rem] font-extrabold">{nota}</td>
@@ -146,6 +150,13 @@ export function FreshBooksContent() {
                   ))}
                 </tbody>
               </table>
+              <p id="comparison-pricing-note" className="mt-6 text-sm leading-relaxed text-ink-2">
+                Standard USD monthly subscriptions, before tax. The $168 difference is
+                ($23 − $9) × 12, not a comparison of annual plans. Promotions and annual
+                discounts can change the result: on October 4, 2026, FreshBooks advertised
+                Lite at $1/month for the first year, subject to offer terms. Payment
+                processing fees are separate; Nota adds no transaction fee.
+              </p>
             </div>
           </div>
         </div>
@@ -154,9 +165,9 @@ export function FreshBooksContent() {
       {/* Pain points */}
       <section className="bg-paper-2 px-4 pt-6 pb-24 md:px-8 md:pb-32">
         <div className="mx-auto max-w-[88rem]">
-          <SectionLabel n="02">Why people leave</SectionLabel>
+          <SectionLabel n="02">The trade-offs</SectionLabel>
           <h2 className="cond mt-10 max-w-4xl text-[clamp(3rem,7vw,7rem)] leading-[0.86] font-black tracking-[-0.015em]">
-            Why people leave FreshBooks.
+            Is Nota right for your invoicing?
           </h2>
 
           <ol className="mt-14 grid gap-px border border-ink/15 bg-ink/15 md:grid-cols-2">
@@ -184,13 +195,14 @@ export function FreshBooksContent() {
       <section className="bg-ink px-4 py-24 text-term-fg md:px-8 md:py-36">
         <div className="mx-auto max-w-[88rem]">
           <h2 className="cond text-[clamp(3.4rem,10vw,10rem)] leading-[0.84] font-black tracking-[-0.02em]">
-            Switching takes
+            Try Nota with
             <br />
-            <span className="bg-hi px-[0.08em] text-ink">one afternoon.</span>
+            <span className="bg-hi px-[0.08em] text-ink">your next invoice.</span>
           </h2>
           <p className="mt-8 max-w-xl font-serif text-[1.25rem] leading-[1.5] text-term-fg/80">
             Add your clients, or paste the list into Nota&rsquo;s chat and let it do the typing.
-            Send your next invoice from Nota. Then cancel FreshBooks and keep the $168.
+            Review the draft and send your next invoice from Nota. Check that it covers your
+            workflow before changing subscriptions.
           </p>
           <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-8">
             <a
@@ -210,9 +222,11 @@ export function FreshBooksContent() {
 
           <p className="mt-20 max-w-3xl border-t border-term-fg/15 pt-6 font-mono text-[11px] leading-relaxed text-term-dim">
             FreshBooks is a trademark of FreshBooks. Nota is not affiliated with, endorsed by, or
-            sponsored by FreshBooks. Pricing and feature information is based on publicly
-            available sources as of September 2026 and may change. All comparisons reference
-            FreshBooks Lite ($23/mo) unless otherwise noted.
+            sponsored by FreshBooks. Checked <time dateTime="2026-10-04">October 4, 2026</time>.
+            Sources: <a className="underline" href="https://www.freshbooks.com/pricing">FreshBooks pricing and features</a>,{" "}
+            <a className="underline" href="https://www.freshbooks.com/2026-faq-price-change">standard subscription prices</a> and{" "}
+            <a className="underline" href="https://www.freshbooks.com/api/start/">API documentation</a>.
+            Prices and features may change. Comparisons reference FreshBooks Lite unless noted.
           </p>
         </div>
       </section>

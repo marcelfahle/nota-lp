@@ -104,7 +104,7 @@ export function Pricing() {
 
             <dl className="mt-12 max-w-2xl divide-y divide-ink/15 border-y border-ink/15">
               {[
-                ["FreshBooks Lite", "$23 a month. Five clients. Client number six means the $43 plan."],
+                ["FreshBooks Lite", "Standard USD monthly pricing: $23 for five billable clients. Plus is $43 for up to 50. Promotions and annual discounts differ."],
                 ["Nota", "$9 a month. Unlimited clients, unlimited invoices, every feature."],
                 ["Nota Free", "Five invoices every month, forever. Not a trial. Every feature included. No card."],
                 ["Self-hosted", "$0. It’s MIT. Clone it, run it, change it."],
